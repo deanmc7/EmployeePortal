@@ -1,30 +1,31 @@
 "use-strict";
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+require("dotenv").config();
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+
+const indexRouter = require("./routes/index.route.js");
+const employeeRouter = require("./routes/employee.route.js");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, (err) => 
-{
-    if (err) 
-    {
-        console.log("There was an error:\n", err);
+mongoose.connect(
+    process.env.DB_CONNECT,
+    { useNewUrlParser: true },
+    err => {
+        if (err) {
+            console.log("There was an error:\n", err);
+        } else {
+            console.log("Connected to MongoDB!");
+        }
     }
-    else 
-    {
-        console.log("Connected to MongoDB!");
-    }
-});
+);
 
-const indexRouter = require('./routes/index.route.js');
-const employeeRouter = require('./routes/employee.route.js');
+app.use("/", indexRouter);
+app.use("/employees", employeeRouter);
 
-app.use('/', indexRouter);
-
-app.listen(process.env.PORT, ()=> {
-    console.log('Listening on port: ' + process.env.PORT);
+app.listen(process.env.PORT, () => {
+    console.log("Listening on port: " + process.env.PORT);
 });

@@ -1,11 +1,10 @@
 "use-strict";
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Employee = new Schema({
-    id: Number,
+const EmployeeSchema = new Schema({
     firstName: String,
-    lastName: String
-})
+    lastName: String,
+});
 
-module.exports = mongoose.model("employee", EmployeeSchema);
+module.exports = Employee = mongoose.model("employee", EmployeeSchema);
