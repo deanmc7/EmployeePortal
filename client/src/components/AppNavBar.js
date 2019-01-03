@@ -21,12 +21,15 @@ class AppNavBar extends Component {
             <div>
                 <Navbar color="dark" dark expand="sm" className="mb-5">
                     <Container>
-                        <NavbarBrand href="/employees">Employees</NavbarBrand>
+                        <NavbarBrand href="/">Company Portal</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
                                     <NavLink href="https://github.com/deanmc7/EmployeePortal">Github</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="/employeelist">Employee List</NavLink>
                                 </NavItem>
                             </Nav>
                         </Collapse>
