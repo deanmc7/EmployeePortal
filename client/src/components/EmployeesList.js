@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
 
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -9,26 +8,11 @@ import TableRow from "@material-ui/core/TableRow";
 
 import Paper from "@material-ui/core/Paper";
 
-import Fab from "@material-ui/core/Fab";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
 
 import uuid from "uuid";
-
-const styles = theme => ({
-    root: {
-        width: "100%",
-        marginTop: theme.spacing.unit * 3,
-        overflowX: "auto",
-    },
-    table: {
-        minWidth: 700,
-    },
-    Fab: {
-        position: "relative",
-    },
-});
 
 class EmployeesList extends Component {
     state = {
@@ -38,6 +22,23 @@ class EmployeesList extends Component {
             { id: uuid(), firstName: "John", lastName: "Doe", email: "john.doe@company.com" },
         ],
     };
+
+    AddEmployee() {
+        const firstName = prompt("Enter First Name");
+        const lastName = prompt("Enter Last Name");
+        if (firstName && lastName) {
+            const email = firstName + "." + lastName + "@company.com";
+            this.setState(state => ({
+                employees: [...state.employees, { id: uuid(), firstName, lastName, email }],
+            }));
+        }
+    }
+
+    DeleteEmployee(id) {
+        this.setState(state => ({
+            employees: state.employees.filter(employee => employee.id !== id),
+        }));
+    }
 
     render() {
         const { employees } = this.state;
@@ -57,7 +58,12 @@ class EmployeesList extends Component {
                             return (
                                 <TableRow key={employee.id}>
                                     <TableCell component="th" scope="row">
-                                        <IconButton aria-label="Delete">
+                                        <IconButton
+                                            aria-label="Delete"
+                                            onClick={() => {
+                                                this.DeleteEmployee(employee.id);
+                                            }}
+                                        >
                                             <DeleteIcon fontSize="small" />
                                         </IconButton>
                                         {employee.id}
@@ -70,12 +76,19 @@ class EmployeesList extends Component {
                         })}
                     </TableBody>
                 </Table>
-                <Fab size="small" color="secondary" aria-label="Add" style={{ justifyContent: "center" }}>
+                <IconButton
+                    size="small"
+                    color="secondary"
+                    aria-label="Add"
+                    onClick={() => {
+                        this.AddEmployee();
+                    }}
+                >
                     <AddIcon />
-                </Fab>
+                </IconButton>
             </Paper>
         );
     }
 }
 
-export default withStyles(styles)(EmployeesList);
+export default EmployeesList;
