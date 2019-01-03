@@ -44,6 +44,16 @@ class EmployeesList extends Component {
         const { employees } = this.state;
         return (
             <Paper>
+                <IconButton
+                    size="small"
+                    color="secondary"
+                    aria-label="Add"
+                    onClick={() => {
+                        this.AddEmployee();
+                    }}
+                >
+                    <AddIcon />
+                </IconButton>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -76,16 +86,6 @@ class EmployeesList extends Component {
                         })}
                     </TableBody>
                 </Table>
-                <IconButton
-                    size="small"
-                    color="secondary"
-                    aria-label="Add"
-                    onClick={() => {
-                        this.AddEmployee();
-                    }}
-                >
-                    <AddIcon />
-                </IconButton>
             </Paper>
         );
     }
