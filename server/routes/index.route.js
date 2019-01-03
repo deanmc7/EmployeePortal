@@ -1,8 +1,7 @@
 "use-strict";
-const routes = require("express").Router();
+const router = require("express").Router();
 const homeCont = require("../controllers/home");
-const employeeCont = require("../controllers/employee");
 
-routes.get("/", homeCont.home);
+router.get("/", homeCont.home);
 
-module.exports = routes;
+module.exports = router;

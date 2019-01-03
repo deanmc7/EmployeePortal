@@ -7,6 +7,8 @@ router.get("/", employees.findAll);
 
 router.post("/", employees.create);
 
+router.put("/:id", employees.update);
+
 router.delete("/:id", employees.delete);
 
 module.exports = router;

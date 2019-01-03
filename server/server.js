@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 
 const indexRouter = require("./routes/index.route.js");
 const employeeRouter = require("./routes/employee.route.js");
+const holidayRouter = require("./routes/holiday.route");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,6 +26,7 @@ mongoose.connect(
 
 app.use("/", indexRouter);
 app.use("/employees", employeeRouter);
+app.use("/employees/holiday", holidayRouter);
 
 app.listen(process.env.PORT, () => {
     console.log("Listening on port: " + process.env.PORT);
