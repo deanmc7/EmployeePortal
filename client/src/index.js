@@ -1,24 +1,33 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+
 import EmployeeListPage from "./Page/EmployeeList";
-import AppNavBar from "./components/AppNavBar";
 import App from "./Page/App";
+
+import AppNavBar from "./components/AppNavBar";
 import NotFound from "./components/NotFound";
+
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
 
 import * as serviceWorker from "./serviceWorker";
 
+import store from "./store";
+
 const routing = (
-    <Router>
-        <div>
-            <AppNavBar />
-            <Switch>
-                <Route exact path="/" component={App} />
-                <Route path="/employeelist" component={EmployeeListPage} />
-                <Route component={NotFound} />
-            </Switch>
-        </div>
-    </Router>
+    <Provider store={store}>
+        <Router>
+            <div>
+                <AppNavBar />
+                <Switch>
+                    <Route exact path="/" component={App} />
+                    <Route path="/employeelist" component={EmployeeListPage} />
+                    <Route component={NotFound} />
+                </Switch>
+            </div>
+        </Router>
+    </Provider>
 );
 
 ReactDOM.render(routing, document.getElementById("root"));
