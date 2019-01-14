@@ -41,15 +41,15 @@ class EmployeesList extends Component {
                     <TableBody>
                         {employees.map(employee => {
                             return (
-                                <TableRow key={employee.id}>
+                                <TableRow key={employee._id}>
                                     <TableCell component="th" scope="row">
                                         <IconButton
                                             aria-label="Delete"
-                                            onClick={this.DeleteEmployee.bind(this, employee.id)}
+                                            onClick={this.DeleteEmployee.bind(this, employee._id)}
                                         >
                                             <DeleteIcon fontSize="small" />
                                         </IconButton>
-                                        {employee.id}
+                                        {employee._id}
                                     </TableCell>
                                     <TableCell align="right">{employee.firstName}</TableCell>
                                     <TableCell align="right">{employee.lastName}</TableCell>

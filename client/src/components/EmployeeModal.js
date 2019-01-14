@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from "reactstrap";
 import { connect } from "react-redux";
 import { newEmployee } from "../actions/employeeActions";
-import uuid from "uuid";
 
 class EmployeeModal extends Component {
     state = {
@@ -29,7 +28,6 @@ class EmployeeModal extends Component {
             const email = this.state.firstName + "." + this.state.lastName + "@company.com";
 
             const newEmployee = {
-                id: uuid(),
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
                 email: email,
@@ -59,7 +57,7 @@ class EmployeeModal extends Component {
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>
-                                <Label for="employee">Employee</Label>
+                                <Label for="employee">Employee Details</Label>
                                 <Input
                                     type="text"
                                     name="firstName"
@@ -73,6 +71,7 @@ class EmployeeModal extends Component {
                                     id="last"
                                     placeholder="Add Last Name"
                                     onChange={this.onChange}
+                                    style={{ marginTop: "0.5rem" }}
                                 />
                                 <Button color="dark" style={{ marginTop: "2rem" }} block>
                                     Add Employee

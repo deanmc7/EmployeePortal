@@ -1,13 +1,8 @@
-import { FETCH_EMPLOYEES, NEW_EMPLOYEES, DELETE_EMPLOYEES } from "../actions/types";
-import uuid from "uuid";
+import { FETCH_EMPLOYEES, NEW_EMPLOYEES, DELETE_EMPLOYEES, EMPLOYEES_LOADING } from "../actions/types";
 
 const initialState = {
-    employees: [
-        { id: uuid(), firstName: "Bob", lastName: "Dylan", email: "bob.dylan@company.com" },
-        { id: uuid(), firstName: "Dave", lastName: "Batista", email: "dave.batista@company.com" },
-        { id: uuid(), firstName: "John", lastName: "Doe", email: "john.doe@company.com" },
-        { id: uuid(), firstName: "blue", lastName: "blah", email: "blue.blah@company.com" },
-    ],
+    employees: [],
+    loading: false,
 };
 
 export default function(state = initialState, action) {
@@ -15,6 +10,8 @@ export default function(state = initialState, action) {
         case FETCH_EMPLOYEES:
             return {
                 ...state,
+                employees: action.payload,
+                loading: false,
             };
         case NEW_EMPLOYEES:
             return {
@@ -24,7 +21,12 @@ export default function(state = initialState, action) {
         case DELETE_EMPLOYEES:
             return {
                 ...state,
-                employees: state.employees.filter(employee => employee.id !== action.payload),
+                employees: state.employees.filter(employee => employee._id !== action.payload),
+            };
+        case EMPLOYEES_LOADING:
+            return {
+                ...state,
+                loading: true,
             };
         default:
             return state;
