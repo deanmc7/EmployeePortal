@@ -6,6 +6,16 @@ export const fetchEmployees = () => {
     };
 };
 
-export const newEmployee = () => {};
+export const newEmployee = employee => {
+    return {
+        type: NEW_EMPLOYEES,
+        payload: employee,
+    };
+};
 
-export const deleteEmployee = () => {};
+export const deleteEmployee = id => {
+    return {
+        type: DELETE_EMPLOYEES,
+        payload: id,
+    };
+};

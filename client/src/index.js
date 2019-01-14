@@ -9,7 +9,6 @@ import AppNavBar from "./components/AppNavBar";
 import NotFound from "./components/NotFound";
 
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
 
 import * as serviceWorker from "./serviceWorker";
 
