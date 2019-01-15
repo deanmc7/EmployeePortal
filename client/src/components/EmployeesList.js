@@ -33,9 +33,9 @@ class EmployeesList extends Component {
                     <TableHead>
                         <TableRow>
                             <TableCell>ID</TableCell>
-                            <TableCell align="right">First Name</TableCell>
-                            <TableCell align="right">Last Name</TableCell>
-                            <TableCell align="right">Email</TableCell>
+                            <TableCell align="left">First Name</TableCell>
+                            <TableCell align="left">Last Name</TableCell>
+                            <TableCell align="left">Email</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -51,9 +51,9 @@ class EmployeesList extends Component {
                                         </IconButton>
                                         {employee._id}
                                     </TableCell>
-                                    <TableCell align="right">{employee.firstName}</TableCell>
-                                    <TableCell align="right">{employee.lastName}</TableCell>
-                                    <TableCell align="right">{employee.email}</TableCell>
+                                    <TableCell align="left">{employee.firstName}</TableCell>
+                                    <TableCell align="left">{employee.lastName}</TableCell>
+                                    <TableCell align="left">{employee.email}</TableCell>
                                 </TableRow>
                             );
                         })}
