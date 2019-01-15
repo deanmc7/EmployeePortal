@@ -2,8 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
+import HolidaysPage from "./Page/HolidaysPage";
 import EmployeeListPage from "./Page/EmployeeList";
 import App from "./Page/App";
+import EmployeesHolidaysPage from "./Page/EmployeesHolidaysPage";
 
 import AppNavBar from "./components/AppNavBar";
 import NotFound from "./components/NotFound";
@@ -22,6 +24,8 @@ const routing = (
                 <Switch>
                     <Route exact path="/" component={App} />
                     <Route path="/employeelist" component={EmployeeListPage} />
+                    <Route exact path="/holidays" component={HolidaysPage} />
+                    <Route exact path="/holidays/all" component={EmployeesHolidaysPage} />
                     <Route component={NotFound} />
                 </Switch>
             </div>

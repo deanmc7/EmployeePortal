@@ -28,7 +28,7 @@ class EmployeesList extends Component {
     render() {
         const { employees } = this.props.employees;
         return (
-            <Paper>
+            <Paper elevation={5}>
                 <Table>
                     <TableHead>
                         <TableRow>
