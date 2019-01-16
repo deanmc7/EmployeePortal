@@ -26,7 +26,7 @@ mongoose.connect(
 
 app.use("/", indexRouter);
 app.use("/employees", employeeRouter);
-app.use("/employees/holiday", holidayRouter);
+app.use("/holidays", holidayRouter);
 
 app.listen(process.env.PORT, () => {
     console.log("Listening on port: " + process.env.PORT);

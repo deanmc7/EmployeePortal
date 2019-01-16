@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const holiday = require("../controllers/holiday");
 
-router.get("/", holiday.findAll);
+router.get("/all", holiday.findAll);
 
 router.post("/", holiday.create);
 

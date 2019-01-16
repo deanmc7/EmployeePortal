@@ -9,40 +9,20 @@ import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
-import uuid from "uuid";
-
-// import { connect } from "react-redux";
-// import { fetchEmployees } from "../actions/employeeActions";
+import { connect } from "react-redux";
+import { fetchAllHolidays } from "../actions/HolidaysActions";
 
 const styles = theme => ({});
 
 class EmployeesHolidaysMain extends Component {
-    state = {
-        holidays: [
-            {
-                id: uuid(),
-                employee: { id: uuid(), firstName: "Bob", lastName: "Dylan", email: "bob.dylan@company.com" },
-                year: 2019,
-                entitlement: 150,
-                amountUsed: 10,
-            },
-            {
-                id: uuid(),
-                employee: { id: uuid(), firstName: "Dave", lastName: "Batista", email: "dave.batista@company.com" },
-                year: 2019,
-                entitlement: 150,
-                amountUsed: 97,
-            },
-        ],
-    };
-
-    // componentDidMount() {
-    //     this.props.fetchEmployees();
-    // }
+    componentDidMount() {
+        this.props.fetchAllHolidays();
+    }
 
     render() {
         const { classes } = this.props;
-        const { holidays } = this.state;
+        const { holidays } = this.props.holidays;
+        console.log(holidays);
 
         return (
             <Paper className={classes.paper} elevation={5}>
@@ -58,9 +38,9 @@ class EmployeesHolidaysMain extends Component {
                     <TableBody>
                         {holidays.map(holiday => {
                             return (
-                                <TableRow key={holiday.employee.id}>
-                                    <TableCell align="left">{holiday.employee.firstName}</TableCell>
-                                    <TableCell align="left">{holiday.employee.lastName}</TableCell>
+                                <TableRow key={holiday._id}>
+                                    <TableCell align="left">{holiday.employee[0].firstName}</TableCell>
+                                    <TableCell align="left">{holiday.employee[0].lastName}</TableCell>
                                     <TableCell align="left">{holiday.entitlement}</TableCell>
                                     <TableCell align="left">{holiday.amountUsed}</TableCell>
                                 </TableRow>
@@ -75,10 +55,15 @@ class EmployeesHolidaysMain extends Component {
 
 EmployeesHolidaysMain.propTypes = {
     classes: PropTypes.object.isRequired,
+    fetchAllHolidays: PropTypes.func.isRequired,
+    holidays: PropTypes.object.isRequired,
 };
 
-// const mapStateToProps = state => ({
-//     employees: state.employees,
-// });
-// todo: default connect(mapStateToProps,{ fetchEmployees })
-export default withStyles(styles)(EmployeesHolidaysMain);
+const mapStateToProps = state => ({
+    holidays: state.holidays,
+});
+
+export default connect(
+    mapStateToProps,
+    { fetchAllHolidays }
+)(withStyles(styles)(EmployeesHolidaysMain));
