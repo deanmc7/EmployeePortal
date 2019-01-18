@@ -1,11 +1,20 @@
 import axios from "axios";
-import { FETCH_EMPLOYEES, NEW_EMPLOYEES, DELETE_EMPLOYEES, EMPLOYEES_LOADING } from "./types";
+import { FETCH_EMPLOYEES, NEW_EMPLOYEES, DELETE_EMPLOYEES, EMPLOYEES_LOADING, FETCH_SINGLE_EMPLOYEE } from "./types";
 
 export const fetchEmployees = () => dispatch => {
     dispatch(setEmployeesLoading());
     axios.get("/employees").then(res =>
         dispatch({
             type: FETCH_EMPLOYEES,
+            payload: res.data,
+        })
+    );
+};
+
+export const fetchSingleEmployee = id => dispatch => {
+    axios.get(`/employees/${id}`).then(res =>
+        dispatch({
+            type: FETCH_SINGLE_EMPLOYEE,
             payload: res.data,
         })
     );

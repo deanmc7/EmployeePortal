@@ -1,4 +1,10 @@
-import { FETCH_EMPLOYEES, NEW_EMPLOYEES, DELETE_EMPLOYEES, EMPLOYEES_LOADING } from "../actions/types";
+import {
+    FETCH_EMPLOYEES,
+    NEW_EMPLOYEES,
+    DELETE_EMPLOYEES,
+    EMPLOYEES_LOADING,
+    FETCH_SINGLE_EMPLOYEE,
+} from "../actions/types";
 
 const initialState = {
     employees: [],
@@ -27,6 +33,11 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 loading: true,
+            };
+        case FETCH_SINGLE_EMPLOYEE:
+            return {
+                ...state,
+                employees: action.payload,
             };
         default:
             return state;

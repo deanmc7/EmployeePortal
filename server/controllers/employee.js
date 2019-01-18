@@ -11,6 +11,12 @@ exports.findAll = (req, res) => {
         });
 };
 
+exports.findOne = (req, res) => {
+    Employee.findById(req.params.id).then(employee => {
+        res.json(employee);
+    });
+};
+
 exports.create = (req, res) => {
     const newEmployee = new Employee({
         firstName: req.body.firstName,

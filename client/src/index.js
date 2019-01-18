@@ -6,6 +6,7 @@ import HolidaysPage from "./Page/HolidaysPage";
 import EmployeeListPage from "./Page/EmployeeList";
 import App from "./Page/App";
 import EmployeesHolidaysPage from "./Page/EmployeesHolidaysPage";
+import EmployeeInfo from "./Page/EmployeeInfo";
 
 import AppNavBar from "./components/AppNavBar";
 import NotFound from "./components/NotFound";
@@ -26,6 +27,7 @@ const routing = (
                     <Route path="/employeelist" component={EmployeeListPage} />
                     <Route exact path="/holidays" component={HolidaysPage} />
                     <Route exact path="/holidays/all" component={EmployeesHolidaysPage} />
+                    <Route exact path="/employees/:id" component={EmployeeInfo} />
                     <Route component={NotFound} />
                 </Switch>
             </div>

@@ -30,7 +30,7 @@ class EmployeesHolidaysMain extends Component {
     }
 
     DisplayEmployeeInfo(id) {
-        window.location = `/employee/${id}`;
+        window.location = `/employees/${id}`;
     }
 
     render() {
