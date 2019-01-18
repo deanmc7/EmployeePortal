@@ -26,7 +26,7 @@ const styles = theme => ({
     },
     title: {
         color: "white",
-        fontSize: 26,
+        fontSize: 20,
         textAlign: "center",
         paddingTop: "2rem",
     },
