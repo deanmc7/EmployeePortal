@@ -26,7 +26,7 @@ class EmployeeData extends Component {
     componentDidMount() {
         var pageURL = window.location.href;
         var employeeId = pageURL.substr(pageURL.lastIndexOf("/") + 1);
-
+        console.log("HERE");
         this.props.fetchSingleEmployee(employeeId);
     }
 
@@ -35,7 +35,7 @@ class EmployeeData extends Component {
         const { classes } = this.props;
         return (
             <Paper className={classes.paper} elevation={5}>
-                <Grid container justify="left" alignItems="left">
+                <Grid container justify="flex-start" alignItems="flex-start">
                     <Avatar
                         alt={employees.firstName + " " + employees.lastName}
                         //src="../static/images/avatar.png"

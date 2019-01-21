@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import classNames from "classnames";
+import PropTypes from "prop-types";
 
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -10,11 +12,21 @@ import Paper from "@material-ui/core/Paper";
 
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { withStyles } from "@material-ui/core/styles";
 
 import { connect } from "react-redux";
 import { fetchEmployees, deleteEmployee } from "../actions/employeeActions";
 
-import PropTypes from "prop-types";
+const styles = theme => ({
+    tableRow: {
+        cursor: "pointer",
+    },
+    tableRowHover: {
+        "&:hover": {
+            backgroundColor: theme.palette.grey[200],
+        },
+    },
+});
 
 class EmployeesList extends Component {
     componentDidMount() {
@@ -25,7 +37,12 @@ class EmployeesList extends Component {
         this.props.deleteEmployee(id);
     }
 
+    DisplayEmployeeInfo(id) {
+        window.location = `/employees/${id}`;
+    }
+
     render() {
+        const { classes } = this.props;
         const { employees } = this.props.employees;
         return (
             <Paper elevation={5}>
@@ -41,7 +58,11 @@ class EmployeesList extends Component {
                     <TableBody>
                         {employees.map(employee => {
                             return (
-                                <TableRow key={employee._id}>
+                                <TableRow
+                                    key={employee._id}
+                                    onClick={this.DisplayEmployeeInfo.bind(this, employee._id)}
+                                    className={classNames(classes.tableRowHover, classes.tableRow)}
+                                >
                                     <TableCell component="th" scope="row">
                                         <IconButton
                                             aria-label="Delete"
@@ -65,6 +86,7 @@ class EmployeesList extends Component {
 }
 
 EmployeesList.propTypes = {
+    classes: PropTypes.object.isRequired,
     fetchEmployees: PropTypes.func.isRequired,
     deleteEmployee: PropTypes.func.isRequired,
     employees: PropTypes.object.isRequired,
@@ -77,4 +99,4 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps,
     { fetchEmployees, deleteEmployee }
-)(EmployeesList);
+)(withStyles(styles)(EmployeesList));
