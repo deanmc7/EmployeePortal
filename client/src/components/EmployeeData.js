@@ -38,7 +38,7 @@ class EmployeeData extends Component {
                 <Grid container justify="flex-start" alignItems="flex-start">
                     <Avatar
                         alt={employees.firstName + " " + employees.lastName}
-                        //src="../static/images/avatar.png"
+                        src="https://cdn1.iconfinder.com/data/icons/user-pictures/101/malecostume-512.png"
                         className={classes.bigAvatar}
                     />
                     <Typography className={classes.text}>
