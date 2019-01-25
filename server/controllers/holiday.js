@@ -35,6 +35,7 @@ exports.create = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
     const update = req.body;
+    console.log(update);
     Holiday.findOneAndUpdate(id, update, err => {
         if (err) {
             return res.json({ success: false, error: err });
