@@ -41,21 +41,22 @@ exports.create = (req, res) => {
                     console.log(err);
                 })
                 .then(booking => {
+                    var response, responseText;
                     const amountUsed = currentHolidayUsed - request;
                     const holidayUpdate = { amountUsed };
-                    console.log(holidayUpdate);
+
                     Holiday.findOneAndUpdate(holiday._id, holidayUpdate, err => {
                         if (err) {
-                            console.log("holiday fail");
-                            //res.json({ success: false, error: err });
+                            return res.json({ holidayBooked: false, error: err });
                         }
-                        console.log("holiday succeed");
-                        //res.json({ success: true });
+
+                        response = JSON.parse('{ "holidayBooked": true }');
+
+                        res.status(200).json({ response, booking });
                     });
-                    res.json(booking);
                 });
         } else {
-            res.json({ success: false });
+            res.json({ success: false, error: "Not enough allowance" });
         }
     });
 };
